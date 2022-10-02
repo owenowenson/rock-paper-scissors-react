@@ -6,7 +6,8 @@ import './App.css'
 // Scissors = 2
 
 function App() {
-  const [username, setUsername] = useState('');
+  const [input, setInput] = useState();
+  const [username, setUsername] = useState();
   const [cpu, setCpu] = useState();
   const [cpuScore, setCpuScore] = useState(0);
   const [userScore, setUserScore] = useState(0);
@@ -18,7 +19,10 @@ function App() {
   // }
 
   function onChange(e){
-    setUsername(e.target.value)
+    if(e.key === 'Enter'){
+      setUsername(e.target.value)
+      setInput('')
+    }
   }
 
 
@@ -51,9 +55,8 @@ function App() {
 
   return (
     <div className="App">
-      <h1>RPS DUEL</h1>
-      <p>Think you have what it takes?</p>
-      <input placeholder="Enter your name." onChange={onChange}></input>
+    {username ? (
+      <div className="content">
       <span className="score">{`YOU ${userScore}`}-{`${cpuScore} `}CPU</span>
       <div className="buttons">
       <button
@@ -83,6 +86,16 @@ function App() {
       <div>
       </div>
       </div>
+      </div>
+    ):(
+      <div className="title-page">
+      <h1>RPS DUEL</h1>
+      <p>Think you have what it takes?</p>
+      <input value={input} placeholder="Enter your name." onKeyUp={onChange}></input>
+      </div>
+    ) }
+      
+      
     </div>
   );
 }
