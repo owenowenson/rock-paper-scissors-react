@@ -28,7 +28,7 @@ function App() {
   function results(input) {
     setCpu(Math.floor(Math.random() * 3));
     if (cpu === 0) {
-      let move = "Computer chose rock.";
+      let move = "Computer chose rock";
       console.log(move);
     } else if (cpu === 1) {
       let move = "Computer chose paper.";
