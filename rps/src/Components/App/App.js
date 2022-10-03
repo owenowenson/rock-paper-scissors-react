@@ -1,4 +1,6 @@
 import { useState } from "react";
+import heart from "../.././heart.svg";
+import heartlost from "../.././heartlost.svg";
 import "./App.css";
 
 // Rock = 0
@@ -11,6 +13,15 @@ function App() {
   const [cpu, setCpu] = useState();
   const [cpuScore, setCpuScore] = useState(0);
   const [userScore, setUserScore] = useState(0);
+  const [livesCount, setLivesCount] = useState(4);
+  const [lives, setLives] = useState([
+    { life: true },
+    { life: true },
+    { life: true },
+    { life: true },
+    { life: true },
+  ]);
+
   // const [moves, setMoves] = useState(0);
 
   // if (moves === 0 && username === '') {
@@ -21,7 +32,6 @@ function App() {
   function onChange(e) {
     if (e.key === "Enter") {
       setUsername(e.target.value);
-      setInput("");
     }
   }
 
@@ -49,6 +59,12 @@ function App() {
       window.alert(`${username} loses.`);
       // setMoves(moves + 1);
       setCpuScore(cpuScore + 1);
+      setLives([
+        ...lives.slice(0, livesCount),
+        { ...lives[livesCount], life: false },
+        ...lives.slice(livesCount + 1, 5),
+      ]);
+      setLivesCount(livesCount - 1);
     }
   }
 
@@ -56,6 +72,27 @@ function App() {
     <div className="App">
       {username ? (
         <div className="content">
+          <div className="top-bar">
+            <button className="return"
+              onClick={function () {
+                setUsername();
+              }}
+            >
+              Return
+            </button>
+            <div className="hearts">
+            {lives.map((life, index) => (
+              <div>
+                {life.life ? (
+                  <img src={heart} alt="heart" />
+                ) : (
+                  <img src={heartlost} alt="heartlost" />
+                )}
+              </div>
+            ))}
+            </div>
+          </div>
+
           <span className="score">
             {`YOU ${userScore}`}-{`${cpuScore} `}CPU
           </span>
@@ -91,11 +128,7 @@ function App() {
         <div className="title-page">
           <h1>RPS DUEL</h1>
           <p>Think you have what it takes?</p>
-          <input
-            value={input}
-            placeholder="Enter your name."
-            onKeyUp={onChange}
-          ></input>
+          <input placeholder="Enter your name." onKeyUp={onChange}></input>
         </div>
       )}
     </div>
