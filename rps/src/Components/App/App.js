@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './App.css'
+import "./App.css";
 
 // Rock = 0
 // Paper = 1
@@ -18,18 +18,17 @@ function App() {
   //   setUsername(name);
   // }
 
-  function onChange(e){
-    if(e.key === 'Enter'){
-      setUsername(e.target.value)
-      setInput('')
+  function onChange(e) {
+    if (e.key === "Enter") {
+      setUsername(e.target.value);
+      setInput("");
     }
   }
-
 
   function results(input) {
     setCpu(Math.floor(Math.random() * 3));
     if (cpu === 0) {
-      let move = "Computer chose rock.";
+      let move = "Computer chose Halaand.";
       console.log(move);
     } else if (cpu === 1) {
       let move = "Computer chose paper.";
@@ -55,47 +54,50 @@ function App() {
 
   return (
     <div className="App">
-    {username ? (
-      <div className="content">
-      <span className="score">{`YOU ${userScore}`}-{`${cpuScore} `}CPU</span>
-      <div className="buttons">
-      <button
-        onClick={function () {
-          console.log("You chose rock.");
-          results(0);
-        }}
-      >
-        Rock
-      </button>
-      <button
-        onClick={function () {
-          console.log("You chose paper.");
-          results(1);
-        }}
-      >
-        Paper
-      </button>
-      <button
-        onClick={function () {
-          console.log("You chose scissors.");
-          results(2);
-        }}
-      >
-        Scissors
-      </button>
-      <div>
-      </div>
-      </div>
-      </div>
-    ):(
-      <div className="title-page">
-      <h1>RPS DUEL</h1>
-      <p>Think you have what it takes?</p>
-      <input value={input} placeholder="Enter your name." onKeyUp={onChange}></input>
-      </div>
-    ) }
-      
-      
+      {username ? (
+        <div className="content">
+          <span className="score">
+            {`YOU ${userScore}`}-{`${cpuScore} `}CPU
+          </span>
+          <div className="buttons">
+            <button
+              onClick={function () {
+                console.log("You chose rock.");
+                results(0);
+              }}
+            >
+              Rock
+            </button>
+            <button
+              onClick={function () {
+                console.log("You chose paper.");
+                results(1);
+              }}
+            >
+              Paper
+            </button>
+            <button
+              onClick={function () {
+                console.log("You chose scissors.");
+                results(2);
+              }}
+            >
+              Scissors
+            </button>
+            <div></div>
+          </div>
+        </div>
+      ) : (
+        <div className="title-page">
+          <h1>RPS DUEL</h1>
+          <p>Think you have what it takes?</p>
+          <input
+            value={input}
+            placeholder="Enter your name."
+            onKeyUp={onChange}
+          ></input>
+        </div>
+      )}
     </div>
   );
 }
