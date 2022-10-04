@@ -23,12 +23,6 @@ function App() {
   ]);
   const [message, setMessage] = useState("Choose your weapon if you dare.");
 
-  // const [moves, setMoves] = useState(0);
-
-  // if (moves === 0 && username === '') {
-  //   let name = window.prompt("What's your name?");
-  //   setUsername(name);
-  // }
   function restart() {
     setUsername();
     setCpuScore(0);
@@ -90,7 +84,7 @@ function App() {
               Return
             </button>
             <div className="hearts">
-              {lives.map((life, index) => (
+              {lives.map((life) => (
                 <div>
                   {life.life ? (
                     <img src={heart} alt="heart" />
