@@ -21,6 +21,7 @@ function App() {
     { life: true },
     { life: true },
   ]);
+  const [message, setMessage] = useState("Choose your weapon if you dare.");
 
   // const [moves, setMoves] = useState(0);
 
@@ -28,7 +29,20 @@ function App() {
   //   let name = window.prompt("What's your name?");
   //   setUsername(name);
   // }
-
+  function restart() {
+    setUsername();
+    setCpuScore(0);
+    setUserScore(0);
+    setLivesCount(4);
+    setMessage("Choose your weapon if you dare.");
+    setLives([
+      { life: true },
+      { life: true },
+      { life: true },
+      { life: true },
+      { life: true },
+    ]);
+  }
   function onChange(e) {
     if (e.key === "Enter") {
       setUsername(e.target.value);
@@ -49,15 +63,14 @@ function App() {
     }
 
     if (input === cpu) {
-      window.alert("Draw.");
-      // setMoves(moves + 1);
+      setMessage("Draw.");
     } else if (input - cpu === 1 || input - cpu === -2) {
-      window.alert(`${username} wins.`);
-      // setMoves(moves + 1);
+      setMessage(`${username} wins.`);
+
       setUserScore(userScore + 1);
     } else {
-      window.alert(`${username} loses.`);
-      // setMoves(moves + 1);
+      setMessage(`${username} loses.`);
+
       setCpuScore(cpuScore + 1);
       setLives([
         ...lives.slice(0, livesCount),
@@ -73,26 +86,22 @@ function App() {
       {username ? (
         <div className="content">
           <div className="top-bar">
-            <button className="return"
-              onClick={function () {
-                setUsername();
-              }}
-            >
+            <button className="return" onClick={restart}>
               Return
             </button>
             <div className="hearts">
-            {lives.map((life, index) => (
-              <div>
-                {life.life ? (
-                  <img src={heart} alt="heart" />
-                ) : (
-                  <img src={heartlost} alt="heartlost" />
-                )}
-              </div>
-            ))}
+              {lives.map((life, index) => (
+                <div>
+                  {life.life ? (
+                    <img src={heart} alt="heart" />
+                  ) : (
+                    <img src={heartlost} alt="heartlost" />
+                  )}
+                </div>
+              ))}
             </div>
           </div>
-
+          <p className="message">{message}</p>
           <span className="score">
             {`YOU ${userScore}`}-{`${cpuScore} `}CPU
           </span>
