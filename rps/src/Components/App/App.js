@@ -12,6 +12,15 @@ import "./App.css";
 
 // Gameover => leaderboard transition: table and play again
 
+/*To do list: 
+1. We want to clean up the code and create different components
+2. Fix SVGs using useEffect on states 
+3. CCS fixes
+4. Create Leaderboard 
+5. Animations and transitions
+6. Connect a backend database to store scores and users 
+*/
+
 function App() {
   const [username, setUsername] = useState();
   const [cpu, setCpu] = useState();
