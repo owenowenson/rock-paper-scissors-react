@@ -7,6 +7,7 @@ import scissors from "../.././scissors.svg";
 import "./App.css";
 import Title from "../Title";
 import Game from "../Game";
+import GameOver from "../GameOver";
 
 // Rock = 0
 // Paper = 1
@@ -54,12 +55,6 @@ function App() {
       { life: true },
       { life: true },
     ]);
-  }
-
-  function onChange(e) {
-    if (e.key === "Enter") {
-      setUsername(e.target.value);
-    }
   }
 
   function results(input) {
@@ -125,12 +120,7 @@ function App() {
               results={results}
             />
           ) : (
-            <div className="game-over">
-              <h1>Game Over</h1>
-              <button className="play-again" onClick={restart}>
-                Play Again
-              </button>
-            </div>
+            <GameOver restart={restart} />
           )}
         </div>
       ) : (
@@ -139,4 +129,5 @@ function App() {
     </div>
   );
 }
+
 export default App;
