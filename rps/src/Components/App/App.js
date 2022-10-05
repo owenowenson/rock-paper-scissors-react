@@ -6,6 +6,7 @@ import paper from "../.././paper.svg";
 import scissors from "../.././scissors.svg";
 import "./App.css";
 import Title from "../Title";
+import Game from "../Game";
 
 // Rock = 0
 // Paper = 1
@@ -111,58 +112,18 @@ function App() {
       {username ? (
         <div className="content">
           {livesCount ? (
-            <div className="game">
-              <div className="top-bar">
-                <button className="return" onClick={restart}>
-                  Return
-                </button>
-                <div className="hearts">
-                  {lives.map((life) => (
-                    <div>
-                      {life.life ? (
-                        <img src={heart} alt="heart" />
-                      ) : (
-                        <img src={heartlost} alt="heartlost" />
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <p className="message">{message}</p>
-              {moves.map((move) => (
-                <img src={move} alt="move" />
-              ))}
-              <span className="score">
-                {`YOU ${userScore}`}-{`${cpuScore} `}CPU
-              </span>
-              <div className="buttons">
-                <button
-                  onClick={function () {
-                    setMoves([]);
-                    results(0);
-                  }}
-                >
-                  Rock
-                </button>
-                <button
-                  onClick={function () {
-                    setMoves([]);
-                    results(1);
-                  }}
-                >
-                  Paper
-                </button>
-                <button
-                  onClick={function () {
-                    setMoves([]);
-                    results(2);
-                  }}
-                >
-                  Scissors
-                </button>
-                <div></div>
-              </div>
-            </div>
+            <Game
+              restart={restart}
+              lives={lives}
+              heart={heart}
+              heartlost={heartlost}
+              message={message}
+              moves={moves}
+              userScore={userScore}
+              cpuScore={cpuScore}
+              setMoves={setMoves}
+              results={results}
+            />
           ) : (
             <div className="game-over">
               <h1>Game Over</h1>
