@@ -5,6 +5,7 @@ import rock from "../.././rock.svg";
 import paper from "../.././paper.svg";
 import scissors from "../.././scissors.svg";
 import "./App.css";
+import Title from "../Title";
 
 // Rock = 0
 // Paper = 1
@@ -172,14 +173,9 @@ function App() {
           )}
         </div>
       ) : (
-        <div className="title-page">
-          <h1>RPS DUEL</h1>
-          <p>Think you have what it takes?</p>
-          <input placeholder="Enter your name." onKeyUp={onChange}></input>
-        </div>
+        <Title setUsername={setUsername} />
       )}
     </div>
   );
 }
-
 export default App;
